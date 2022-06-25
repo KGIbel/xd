@@ -69,8 +69,28 @@
     function hideValidate(input) {
         var thisAlert = $(input).parent();
         $(thisAlert).removeClass('alert-validate');
-    }
-});
+        }
+    });
+
+    $(function() {
+        $('div[youtube]').each(function() {
+            $(this).wrap('<div class="youtube-wrap"></div>');
+            let youtube = $(this).attr('youtube');
+            let image = $(this).attr('poster');
+            if (image) {
+                $(this).html('<img alt="" src="'+ image +'" />');   
+            } else {
+                $(this).html('<img alt="" src="https://i.ytimg.com/vi/'+ youtube +'/sddefault.jpg" />'); 
+            }
+        }); 
+        $('div[youtube]').click(function() {
+            if (!$(this).hasClass('show')) {
+                $(this).addClass('show');    
+                $(this).append('<iframe src="https://www.youtube.com/embed/'+ $(this).attr('youtube') +'?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
+                $(this).children('img').fadeOut('slow');
+            } 
+        });
+    });
         </script>
         <script src="1.js"></script>
         <!-- Core theme CSS (includes Bootstrap)-->
@@ -192,7 +212,7 @@
                         <a class="social-icon" href="https://www.google.com/search?gs_ssp=eJzj4tLP1TfIyDMsS05XYDRgdGDwYi8pzywpSS0CAFnOB00&q=twitter&rlz=1C1GCEU_ruBY921BY921&oq=twii&aqs=chrome.2.69i57j0i10i131i433j46i10i131i199i433i465j0i10i131i433j0i10l3j0i10i433j0i10l2.1350j0j7&sourceid=chrome&ie=UTF-8&safe=active&ssui=on"><i class="fab fa-twitter"></i></a>
                         <a class="social-icon" href="https://ru-ru.facebook.com/"><i class="fab fa-facebook-f"></i></a>
                     </div> -->
-                    <div class="cart_container">
+                    <!-- <div class="cart_container">
                         <div class="cart">
                             <img src="img/logo.png" alt="" />
                         </div>
@@ -211,12 +231,14 @@
                         <div class="cart">
                             <img src="img/profile.jpg" alt="" />
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </section>
             <!-- Interests-->
             
         </div>
+
+        <!-- <div youtube="sox0tZuqpQA"></div> -->
 
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
